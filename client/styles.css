@@ -1,0 +1,110 @@
+/* Overriding default styles */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Helper styles */
+
+.container {
+    max-width: 960px;
+    margin: auto;
+    overflow: hidden;
+    padding: 4rem 1rem;
+}
+
+.center {
+    text-align: center;
+    margin: auto;
+}
+
+.bg-light {
+    background: #f4f4f4;
+    color: #333;
+}
+
+.bg-dark {
+    background: #333;
+    color: #f4f4f4;
+}
+
+.grid-2 {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+/* Horizontal Rule */
+
+hr {
+    width: 70%;
+    text-align-last: center;
+    border: 1.5px solid #c0c0c0;
+}
+
+
+/* Heading */
+
+.heading {
+    background-color: #4b2060;
+    color: #f4f4f4;
+    margin-top: 0;
+    border-bottom: 10px solid #f9d25a;
+    margin-bottom: 25px;
+}
+
+.heading-icon {
+    max-height: 50px;
+    width: auto;
+    margin-top: 12px;
+}
+
+
+/* Table */
+
+table,
+th,
+td {
+    border: 1px solid #333;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 15px;
+}
+
+
+/* Calculate Stable Matching Button */
+
+button {
+    background-color: #333;
+    color: #f4f4f4;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 1.5vh;
+}
+
+
+/* Website Footer */
+
+footer {
+    padding: 1.5rem;
+}
+
+footer p {
+    margin: 0;
+}

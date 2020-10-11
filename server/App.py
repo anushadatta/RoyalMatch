@@ -5,6 +5,10 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 
+@app.route('/', methods=['GET'])
+def home():
+    return "working"
+
 @app.route('/', methods=['POST'])
 def algorithm():
     data = request.get_json()

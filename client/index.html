@@ -13,7 +13,7 @@
     <script src="main.js" defer></script>
 </head>
 
-<body>
+<body onload="create_table()">
     <!-- Header -->
     <div class="heading center">
         <img src="assets/crown.png" alt="Logo" class="heading-icon">
@@ -103,8 +103,9 @@
             </tr>
         </table>
     </div>
+
     <!-- Calculate Stable Matching -->
-    <div class="center"><button onclick="calculate()">Calculate Stable Matching</button></div>
+    <div class="center"><button onclick="calculate_matches()">Calculate Stable Matching</button></div>
 
     <!-- Results -->
     <div id="matching-results"></div>

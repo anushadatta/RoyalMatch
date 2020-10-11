@@ -3,7 +3,51 @@
 // Heart = 2
 // Spade = 3
 
-function calculate() {
+function create_table() {
+
+    // Kings Preferences
+    for (let king = 0; king < 4; king++) {
+
+        for (let preference = 1; preference <= 4; preference++) {
+            var data_id = "k" + king + "-p" + preference;
+            var table_cell = document.getElementById(data_id);
+
+            var options_list = `
+            Queen 
+            <select id="select-${data_id}">
+                <option value="0">♣</option>
+                <option value="1">♦</option>
+                <option value="2">♥</option>
+                <option value="3">♠</option>
+            </select>
+            `;
+
+            table_cell.innerHTML = options_list;
+        }
+    }
+
+    // Queens Preferences
+    for (let queen = 0; queen < 4; queen++) {
+
+        for (let preference = 1; preference <= 4; preference++) {
+            var data_id = "q" + queen + "-p" + preference;
+            var table_cell = document.getElementById(data_id);
+
+            var options_list = `
+            King 
+            <select id="select-${data_id}">
+                <option value="0">♣</option>
+                <option value="1">♦</option>
+                <option value="2">♥</option>
+                <option value="3">♠</option>
+            </select>
+            `;
+            table_cell.innerHTML = options_list;
+        }
+    }
+}
+
+function calculate_matches() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -37,8 +81,15 @@ function get_preferences_data() {
         king_pref = []; // For single king
 
         for (preference = 1; preference <= 4; preference++) {
-            data_id = "k" + king + "-p" + preference;
-            king_pref.push(decode_table_data(document.getElementById(data_id).textContent));
+            data_id = "select-k" + king + "-p" + preference;
+            var value = document.getElementById(data_id).value;
+            king_pref.push(parseInt(value));
+        }
+
+        // Input validation
+        if (has_duplicates(king_pref)) {
+            alert('The kings preferences have been incorrectly selected.');
+            location.reload(True);
         }
 
         kings_preferences.push(king_pref);
@@ -50,8 +101,15 @@ function get_preferences_data() {
         queen_pref = []; // For single queen
 
         for (preference = 1; preference <= 4; preference++) {
-            data_id = "q" + queen + "-p" + preference;
-            queen_pref.push(decode_table_data(document.getElementById(data_id).textContent));
+            data_id = "select-q" + queen + "-p" + preference;
+            var value = document.getElementById(data_id).value;
+            queen_pref.push(parseInt(value));
+        }
+
+        // Input validation
+        if (has_duplicates(queen_pref)) {
+            alert('The queens preferences have been incorrectly selected.');
+            location.reload(True);
         }
 
         queens_preferences.push(queen_pref);
@@ -65,7 +123,14 @@ function get_preferences_data() {
         'queens_preferences': queens_preferences
     };
 
+    console.log(preferences_data);
+
     return preferences_data;
+}
+
+// Ensure preferences correctly selected
+function has_duplicates(arr) {
+    return new Set(arr).size !== arr.length;
 }
 
 function decode_table_data(data) {
@@ -90,6 +155,10 @@ function display_results(result) {
 
     matches = result['matches'];
     calculation_logs = result['logs'];
+
+    // Reset result divs
+    document.getElementById("matching-results").innerHTML = "";
+    document.getElementById("calculation-logs").innerHTML = "";
 
     // Display Stable Matches
     const resultsDiv = document.getElementById("matching-results");

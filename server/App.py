@@ -7,7 +7,7 @@ cors = CORS(app)
 
 @app.route('/', methods=['GET'])
 def home():
-    return "working"
+    return "RoyalMatch successfully deployed"
 
 @app.route('/', methods=['POST'])
 def algorithm():

@@ -87,6 +87,16 @@ td {
 }
 
 
+/* Drop down menu */
+
+select {
+    padding: 5px;
+    background-color: #f4f4f4;
+    color: #333;
+    cursor: pointer;
+}
+
+
 /* Calculate Stable Matching Button */
 
 button {

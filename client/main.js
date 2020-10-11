@@ -16,9 +16,12 @@ function calculate() {
         redirect: 'follow'
     };
 
-    fetch("http://127.0.0.1:5000/", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
+    fetch("https://royal-match.herokuapp.com/", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            display_results(result);
+        })
         .catch(error => console.log('error', error));
 
 }
@@ -75,4 +78,50 @@ function decode_table_data(data) {
         return 2;
     else
         return 3;
+}
+
+function encode_table_data(preference_number) {
+
+    symbols = ["♣", "♦", "♥", "♠"];
+    return symbols[preference_number];
+}
+
+function display_results(result) {
+
+    matches = result['matches'];
+    calculation_logs = result['logs'];
+
+    // Display Stable Matches
+    const resultsDiv = document.getElementById("matching-results");
+    var result_table = document.createElement("table");
+    result_table.classList.add("center");
+
+    var result_table_data = `
+    <tr>
+        <td>Queen ♣</td>
+        <td>Queen ♦</td>
+        <td>Queen ♥</td>
+        <td>Queen ♠</td>
+    </tr>
+    <tr>
+        <td>King ${encode_table_data(matches[0])}</td>
+        <td>King ${encode_table_data(matches[1])}</td>
+        <td>King ${encode_table_data(matches[2])}</td>
+        <td>King ${encode_table_data(matches[3])}</td>
+    </tr>
+    `;
+
+    result_table.innerHTML = result_table_data;
+    resultsDiv.appendChild(result_table);
+
+    // Display Calculation Logs
+    const logsDiv = document.getElementById("calculation-logs");
+
+    for (let i = 0; i < calculation_logs.length; i++) {
+
+        var log_entry = document.createElement("li");
+        log_entry.innerHTML = calculation_logs[i];
+
+        logsDiv.appendChild(log_entry);
+    }
 }

@@ -39,7 +39,7 @@ def algorithm():
                 break
             king += 1
         
-        calculation_logs.append("King {} chosen for matching.".format(king))
+        calculation_logs.append(f"King {king} chosen for matching.")
 
         # Iterate through chosen king's preferences
         index = 0

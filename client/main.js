@@ -7,7 +7,7 @@ function calculate() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify(get_preferences_data());
+    var raw = JSON.stringify(get_preferences_data()); // POST data
 
     var requestOptions = {
         method: 'POST',

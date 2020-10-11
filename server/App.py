@@ -14,6 +14,7 @@ def algorithm():
     print(kings_preferences, queens_preferences)
 
     N = 4   # Number of men or women 
+    calculation_logs = [] 
 
     # Function to check queen's preference between current engagement and new proposal
     def queen_prefers_current_king(preference_data, queen, new_king, current_king):
@@ -38,11 +39,15 @@ def algorithm():
                 break
             king += 1
         
+        calculation_logs.append("King {} chosen for matching.".format(king))
+
         # Iterate through chosen king's preferences
         index = 0
         while index < N and king_engaged[king] == False:
             # Current queen preference
             queen = kings_preferences[king][index]
+
+            calculation_logs.append("King {} prefers Queen {}.".format(king, queen))
 
             # Case 1: Queen is single
             if queen_matches[queen] == -1:
@@ -50,10 +55,14 @@ def algorithm():
                 king_engaged[king] = True
                 single_count -= 1
 
+                calculation_logs.append("King {} and Queen {} engaged.".format(king, queen))
+
             # Case 2: Queen is engaged
             else:
                 # Find current engagement of queen
                 queens_current_engagement = queen_matches[queen]
+
+                calculation_logs.append("Queen {} currently engaged to King {}.".format(queen, queens_current_engagement))
 
                 # Case 2.1: Ready to accept proposal
                 if (queen_prefers_current_king(queens_preferences, queen, king, queens_current_engagement) == False):
@@ -61,15 +70,27 @@ def algorithm():
                     king_engaged[king] = True
                     king_engaged[queens_current_engagement] = False
 
+                    calculation_logs.append("Queen {} prefers King {} over King {}.".format(queen, king, queens_current_engagement))
+                    calculation_logs.append("King {} and Queen {} are now engaged. King {} is single.".format(king, queen, queens_current_engagement))
+
                 # Case 2.2: Not ready to accept proposal
                 else:
+                    calculation_logs.append("Queen {} prefers King {} over King {}.".format(queen, queens_current_engagement, king))
+                    calculation_logs.append("King {} not engaged to Queen {}, and remains single.".format(king, queen))
                     pass
             
             index += 1
 
             print("queen matches ", queen_matches)
+    
+    calculation_logs.append("Matching complete.")
+    
+    result = {
+        'matches': queen_matches,
+        'logs': calculation_logs
+    }
 
-    return jsonify(queen_matches)
+    return jsonify(result)
 
 if __name__== '__main__': 
     app.run(port = 5000, debug = True)

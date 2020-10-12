@@ -88,7 +88,7 @@ function get_preferences_data() {
 
         // Input validation
         if (has_duplicates(king_pref)) {
-            alert('The kings preferences have been incorrectly selected.');
+            alert('The kings preferences have been incorrectly selected. Please follow the instructions.');
             location.reload(True);
         }
 
@@ -108,7 +108,7 @@ function get_preferences_data() {
 
         // Input validation
         if (has_duplicates(queen_pref)) {
-            alert('The queens preferences have been incorrectly selected.');
+            alert('The queens preferences have been incorrectly selected. Please follow the instructions.');
             location.reload(True);
         }
 
@@ -160,8 +160,15 @@ function display_results(result) {
     document.getElementById("matching-results").innerHTML = "";
     document.getElementById("calculation-logs").innerHTML = "";
 
-    // Display Stable Matches
+    // 1. Display Stable Matches
     const resultsDiv = document.getElementById("matching-results");
+
+    // 1.1 Heading
+    var result_heading = document.createElement("h3");
+    result_heading.innerHTML = "RESULTS";
+    resultsDiv.appendChild(result_heading);
+
+    // 1.2 Matches
     var result_table = document.createElement("table");
     result_table.classList.add("center");
 
@@ -183,9 +190,20 @@ function display_results(result) {
     result_table.innerHTML = result_table_data;
     resultsDiv.appendChild(result_table);
 
-    // Display Calculation Logs
+    // 2. Display Calculation Logs
     const logsDiv = document.getElementById("calculation-logs");
 
+    // 2.1 Heading
+    var logs_heading = document.createElement("h3");
+    logs_heading.innerHTML = "CALCULATION LOGS";
+    logsDiv.appendChild(logs_heading);
+
+    // 2.2 Encoding
+    var encoding = document.createElement("p");
+    encoding.innerHTML = "Please note, for the purpose of calculation [♣ = 0], [♦ = 1], [♥ = 2], [♠ = 3]."
+    logsDiv.appendChild(encoding);
+
+    // 2.3 Logs
     for (let i = 0; i < calculation_logs.length; i++) {
 
         var log_entry = document.createElement("li");

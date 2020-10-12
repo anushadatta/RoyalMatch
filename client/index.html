@@ -20,6 +20,15 @@
         <h1>RoyalMatch</h1>
     </div>
 
+    <div class="container">
+        In mathematics, economics, and computer science, the Gale–Shapley algorithm (also known as the deferred acceptance algorithm) is an algorithm for finding a solution to the stable matching problem. This implementation of the Gale–Shapley algorithm aims
+        to find stable matching for the following 4 Kings and 4 Queens given their preferences.
+        <br>
+        <br> > To specify preferences for each King and Queen use the given drop down menu.
+        <br> > Ensure that each King or Queen has 4 unique preferences [♣, ♦, ♥, ♠], which may be listed in any order of preference.
+        <br> > Please note that the algorithm will not work if the preferences for each Royal are not unique.
+    </div>
+
     <!-- Kings Preferences -->
     <div class="container">
         <h3>KINGS PREFERENCES</h3>
@@ -108,7 +117,7 @@
     <div class="center"><button onclick="calculate_matches()">Calculate Stable Matching</button></div>
 
     <!-- Results -->
-    <div id="matching-results"></div>
+    <div id="matching-results" class="container"></div>
 
     <!-- Calculation Log -->
     <ul id="calculation-logs" class="container"></ul>

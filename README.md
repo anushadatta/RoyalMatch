@@ -36,3 +36,23 @@ This implementation of the Gale–Shapley algorithm aims to find stable matching
 * <b> Calculation Logs: </b> The verbose calculations for the optimal result produced are also displayed for reference. 
 
 <p align="center"><img src="client/assets/Results.png" width="550"></p>
+
+### SET UP: Local Deployment
+To set up and deploy the application locally, follow the steps below: 
+
+* Set up local virtual environment 
+```bash
+~$ virtualenv env
+```
+* Activate virtual environment
+```bash
+~$ source env/bin/activate 
+```
+* Install dependencies
+```bash
+~$ pip install -r requirements.txt
+```
+* Run server on localhost:5000
+```bash
+~$ python server/app.py
+```

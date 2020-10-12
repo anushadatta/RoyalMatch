@@ -37,7 +37,7 @@ This implementation of the Gale–Shapley algorithm aims to find stable matching
 
 <p align="center"><img src="client/assets/Results.png" width="550"></p>
 
-### SET UP: Local Deployment
+## SET UP: Local Deployment
 To set up and deploy the application locally, follow the steps below: 
 
 * Set up local virtual environment 

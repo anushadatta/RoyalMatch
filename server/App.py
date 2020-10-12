@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify;
+from flask import Flask, request, jsonify, send_static_file;
 import json
 from flask_cors import CORS, cross_origin
 
@@ -7,7 +7,8 @@ cors = CORS(app)
 
 @app.route('/', methods=['GET'])
 def home():
-    return "RoyalMatch successfully deployed"
+    # return "RoyalMatch successfully deployed"
+    return app.send_static_file('client/index.html')
 
 @app.route('/', methods=['POST'])
 def algorithm():
